@@ -1,0 +1,43 @@
+﻿@page "/Demo/Blazor_Server_Measure_network_latency"
+
+@inject IJSRuntime JS
+
+<h3>Blazor_Server_Measure_network_latency</h3>
+
+<p>
+    come from:https://docs.microsoft.com/en-us/aspnet/core/blazor/host-and-deploy/server?view=aspnetcore-5.0
+</p>
+
+<pre>
+    <code>
+        
+      
+    </code>
+</pre>
+
+
+
+@if (latency is null)
+{
+    <span>Calculating...</span>
+}
+else
+{
+    <span>@(latency.Value.TotalMilliseconds)ms</span>
+}
+
+@code {
+    private DateTime startTime;
+    private TimeSpan? latency;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            startTime = DateTime.UtcNow;
+            var _ = await JS.InvokeAsync<string>("toString");
+            latency = DateTime.UtcNow - startTime;
+            StateHasChanged();
+        }
+    }
+}
