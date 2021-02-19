@@ -24,6 +24,12 @@
         </li>
 
         <li class="nav-item px-3">
+            <NavLink class="nav-link" href="/Demo/Blazor_Server_Lifecycle_methods">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Blazor Server Lifecycle methods
+            </NavLink>
+        </li>
+
+        <li class="nav-item px-3">
             <NavLink class="nav-link" href="/Demo/Blazor_Server_Measure_network_latency">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Measure network latency
             </NavLink>
@@ -32,13 +38,11 @@
     </ul>
 </div>
 
-@code {
-    private bool collapseNavMenu = true;
+@code { private bool collapseNavMenu = true;
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+            private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
+            private void ToggleNavMenu()
+            {
+                collapseNavMenu = !collapseNavMenu;
+            } }

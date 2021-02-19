@@ -1,0 +1,60 @@
+﻿@page "/Demo/Blazor_Server_Lifecycle_methods"
+<h3>Blazor_Server_Lifecycle_methods</h3>
+
+<a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/components/lifecycle?view=aspnetcore-5.0" target="_blank">>Blazor_Server_Lifecycle_methods</a>
+
+@foreach (var item in EventType)
+{@item
+<hr />
+}
+
+@code{
+    List<string> EventType = new List<string>();
+    protected override void OnInitialized()
+    {
+        EventType.Add(" 1 OnInitialized() called");
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        EventType.Add("2 Task OnInitializedAsync() called");
+        await Task.Delay(1000);
+    }
+    protected override void OnParametersSet()
+    {
+        EventType.Add("3 OnParametersSet() called ");
+    }
+    protected override async Task OnParametersSetAsync()
+    {
+        EventType.Add(" 4 Task OnParametersSetAsync() called");
+        await Task.Delay(1000);
+    }
+    protected override bool ShouldRender()
+    {
+        EventType.Add(" 5 ShouldRender() called");
+        return true;
+    }
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            EventType.Add(" 6 OnAfterRender(bool firstRender) called （first Render）");
+        }
+        else
+        {
+            EventType.Add(" 6 OnAfterRender(bool firstRender) called（not first Render）");
+        }
+
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            EventType.Add(" 7 Task OnAfterRenderAsync(bool firstRender) called（first Render）");
+        }
+        else
+        {
+            EventType.Add(" 7 Task OnAfterRenderAsync(bool firstRender) called（not first Render）");
+        }
+        await Task.Delay(1000);
+    }
+}
