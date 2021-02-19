@@ -1,0 +1,1 @@
+﻿Blazor server 5.x
